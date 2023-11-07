@@ -1,6 +1,7 @@
 import "./App.css";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
+import SingleRecipe from "./components/SingleRecipe";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/recipe/:id" element={<SingleRecipe />} />
         </Routes>
       </HashRouter>
     </div>
@@ -17,5 +19,3 @@ function App() {
 }
 
 export default App;
-
-// Search if you can fetch the newest recipes and display them grid 3 on a row

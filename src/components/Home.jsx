@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -19,15 +20,14 @@ function Home() {
         return response.json();
       })
       .then((data) => {
-        // Assuming the response data is an array of recipes
-        setRecipes(data.results); // Get the most recent 9 recipes
+        setRecipes(data.results);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   };
 
-  console.log(recipes);
+  // console.log(recipes);
 
   return (
     <div className="home-container">
@@ -35,8 +35,10 @@ function Home() {
       <div className="recipe-grid">
         {recipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id}>
-            <h3>{recipe.title}</h3>
-            <img src={recipe.image} alt={recipe.title} />
+            <Link to={`/recipe/${recipe.id}`}>
+              <h3>{recipe.title}</h3>
+              <img src={recipe.image} alt={recipe.title} />
+            </Link>
           </div>
         ))}
       </div>
