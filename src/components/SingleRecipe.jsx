@@ -55,6 +55,7 @@ function SingleRecipe() {
         <p>Health Score: {recipe.healthScore}</p>
       </div>
 
+      <br />
       <hr />
 
       {recipe.extendedIngredients && recipe.extendedIngredients.length > 0 ? (
@@ -82,7 +83,6 @@ function SingleRecipe() {
       <hr />
 
       <p className="instructions">{recipe.instructions}</p>
-      <br />
     </div>
   );
 }

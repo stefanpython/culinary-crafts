@@ -1,10 +1,30 @@
+import { useState } from "react";
 import "./Nav.css";
+import { useNavigate } from "react-router-dom";
 
 function Nav() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/recipes?query=${searchQuery}`);
+  };
+
+  // console.log(searchQuery);
+
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <input type="text" placeholder="Enter ingredients" />
+        <form onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Enter ingredients"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </form>
       </div>
     </nav>
   );
