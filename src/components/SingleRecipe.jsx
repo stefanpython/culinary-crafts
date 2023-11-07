@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import "./SingleRecipe.css";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { uid } from "uid";
 
 function SingleRecipe() {
   const [recipe, setRecipe] = useState([]);
@@ -48,26 +47,42 @@ function SingleRecipe() {
   return (
     <div className="single-recipe">
       <h1>{recipe.title}</h1>
-      <img src={recipe.image} alt={recipe.title} />
-      <p>{recipe.instructions}</p>
-      <p>Ready in: {recipe.readyInMinutes} minutes</p>
-      <p>Servings: {recipe.servings}</p>
-      <p>Health Score: {recipe.healthScore}</p>
+      <img className="recipe-img" src={recipe.image} alt={recipe.title} />
+
+      <div>
+        <p>Ready in: {recipe.readyInMinutes} minutes</p>
+        <p>Servings: {recipe.servings}</p>
+        <p>Health Score: {recipe.healthScore}</p>
+      </div>
+
+      <hr />
 
       {recipe.extendedIngredients && recipe.extendedIngredients.length > 0 ? (
-        recipe.extendedIngredients.map((ingredient) => (
-          <div className="ingredient-list" key={ingredient.id}>
-            <h4>{ingredient.measures.us.amount} cups</h4>
-            <img
-              src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
-              alt={ingredient.name}
-            />
-            <p>{ingredient.name}</p>
-          </div>
-        ))
+        <div className="ingredient-grid-container">
+          {recipe.extendedIngredients.map((ingredient) => (
+            <div className="ingredient-list" key={ingredient.id}>
+              <h4>
+                {ingredient.measures.us.amount} cups or{" "}
+                {Math.round(ingredient.measures.metric.amount)} g
+              </h4>
+              <img
+                className="ingredient-img"
+                src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
+                alt={ingredient.name}
+              />
+              <p>{ingredient.name}</p>
+            </div>
+          ))}
+        </div>
       ) : (
         <p>No ingredients available.</p>
       )}
+
+      <br />
+      <hr />
+
+      <p className="instructions">{recipe.instructions}</p>
+      <br />
     </div>
   );
 }
