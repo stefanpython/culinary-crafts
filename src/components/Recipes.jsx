@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Recipes.css";
 
 function Recipes() {
   const location = useLocation();
@@ -56,16 +57,19 @@ function Recipes() {
   }, []);
 
   return (
-    <div className="recipe-grid">
-      {recipeData.map((recipe) => (
-        <div className="recipe-card" key={recipe.id}>
-          <Link to={`/recipe/${recipe.id}`}>
-            <h3>{recipe.title}</h3>
-            <img src={recipe.image} alt={recipe.title} />
-          </Link>
-        </div>
-      ))}
-    </div>
+    <>
+      <h1>You have searched for: {searchQuery}</h1>
+      <div className="recipe-grid">
+        {recipeData.map((recipe) => (
+          <div className="recipe-card" key={recipe.id}>
+            <Link to={`/recipe/${recipe.id}`}>
+              <h3>{recipe.title}</h3>
+              <img src={recipe.image} alt={recipe.title} />
+            </Link>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

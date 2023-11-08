@@ -9,6 +9,7 @@ function Nav() {
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/recipes?query=${searchQuery}`);
+    setSearchQuery("");
   };
 
   // console.log(searchQuery);
