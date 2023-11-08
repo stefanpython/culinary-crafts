@@ -17,6 +17,7 @@ function Nav() {
 
   return (
     <nav className="navbar">
+      <h1 className="title">Culinary crafts</h1>
       <Link to={`/`}>
         <img className="logo" src="./logo2.png" alt="logo" />
       </Link>

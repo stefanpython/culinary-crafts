@@ -48,7 +48,7 @@ function SingleRecipe() {
   return (
     <>
       <button className="home-btn" onClick={() => nagigate("/")}>
-        Home
+        Back
       </button>
       <div className="single-recipe">
         <h1>{recipe.title}</h1>

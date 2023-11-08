@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Agbalumo&display=swap");
+
 .navbar {
   background-color: #87a96b;
-  padding: 20px 0;
+  padding: 5px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,9 +33,18 @@ input[type="text"] {
   margin-bottom: -6px;
 }
 
+.title {
+  margin-right: 5px;
+  font-family: "Agbalumo", Courier, monospace;
+  color: rgb(255, 225, 127);
+}
+
 @media (max-width: 786px) {
   input[type="text"] {
     padding: 2px;
     width: 200px;
+  }
+  .title {
+    display: none;
   }
 }

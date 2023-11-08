@@ -61,7 +61,7 @@ function Recipes() {
   return (
     <>
       <button className="home-btn" onClick={() => nagigate("/")}>
-        Home
+        Back
       </button>
       <h2>You have searched for: {searchQuery}</h2>
       <div className="recipe-grid">
