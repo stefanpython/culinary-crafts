@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Recipes.css";
 
@@ -7,6 +7,8 @@ function Recipes() {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
   const [recipeData, setRecipeData] = useState([]);
+  const nagigate = useNavigate();
+
   const [page, setPage] = useState(10); // Track the current page
   const isLoading = useRef(false);
 
@@ -58,6 +60,9 @@ function Recipes() {
 
   return (
     <>
+      <button className="home-btn" onClick={() => nagigate("/")}>
+        Home
+      </button>
       <h2>You have searched for: {searchQuery}</h2>
       <div className="recipe-grid">
         {recipeData.map((recipe) => (

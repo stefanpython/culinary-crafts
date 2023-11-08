@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Nav.css";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Nav() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,7 +17,9 @@ function Nav() {
 
   return (
     <nav className="navbar">
-      <img className="logo" src="./logo2.png" alt="logo" />
+      <Link to={`/`}>
+        <img className="logo" src="./logo2.png" alt="logo" />
+      </Link>
       <div className="nav-container">
         <form onSubmit={handleSearch}>
           <input

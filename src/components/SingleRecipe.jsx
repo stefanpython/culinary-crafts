@@ -1,10 +1,11 @@
 import "./SingleRecipe.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function SingleRecipe() {
   const [recipe, setRecipe] = useState([]);
   const { id } = useParams();
+  const nagigate = useNavigate("/");
 
   useEffect(() => {
     fetchRecipeInformation();
@@ -45,45 +46,50 @@ function SingleRecipe() {
   console.log(recipe);
 
   return (
-    <div className="single-recipe">
-      <h1>{recipe.title}</h1>
-      <img className="recipe-img" src={recipe.image} alt={recipe.title} />
+    <>
+      <button className="home-btn" onClick={() => nagigate("/")}>
+        Home
+      </button>
+      <div className="single-recipe">
+        <h1>{recipe.title}</h1>
+        <img className="recipe-img" src={recipe.image} alt={recipe.title} />
 
-      <div>
-        <p>Ready in: {recipe.readyInMinutes} minutes</p>
-        <p>Servings: {recipe.servings}</p>
-        <p>Health Score: {recipe.healthScore}</p>
-      </div>
-
-      <br />
-      <hr />
-
-      {recipe.extendedIngredients && recipe.extendedIngredients.length > 0 ? (
-        <div className="ingredient-grid-container">
-          {recipe.extendedIngredients.map((ingredient) => (
-            <div className="ingredient-list" key={ingredient.id}>
-              <h4>
-                {ingredient.measures.us.amount} cups or{" "}
-                {Math.round(ingredient.measures.metric.amount)} g
-              </h4>
-              <img
-                className="ingredient-img"
-                src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
-                alt={ingredient.name}
-              />
-              <p>{ingredient.name}</p>
-            </div>
-          ))}
+        <div>
+          <p>Ready in: {recipe.readyInMinutes} minutes</p>
+          <p>Servings: {recipe.servings}</p>
+          <p>Health Score: {recipe.healthScore}</p>
         </div>
-      ) : (
-        <p>No ingredients available.</p>
-      )}
 
-      <br />
-      <hr />
+        <br />
+        <hr />
 
-      <p className="instructions">{recipe.instructions}</p>
-    </div>
+        {recipe.extendedIngredients && recipe.extendedIngredients.length > 0 ? (
+          <div className="ingredient-grid-container">
+            {recipe.extendedIngredients.map((ingredient) => (
+              <div className="ingredient-list" key={ingredient.id}>
+                <h4>
+                  {ingredient.measures.us.amount} cups or{" "}
+                  {Math.round(ingredient.measures.metric.amount)} g
+                </h4>
+                <img
+                  className="ingredient-img"
+                  src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
+                  alt={ingredient.name}
+                />
+                <p>{ingredient.name}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>No ingredients available.</p>
+        )}
+
+        <br />
+        <hr />
+
+        <p className="instructions">{recipe.instructions}</p>
+      </div>
+    </>
   );
 }
 

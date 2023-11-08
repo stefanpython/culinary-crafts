@@ -28,6 +28,7 @@ input[type="text"] {
 .logo {
   height: 50px;
   margin-right: 10px;
+  margin-bottom: -6px;
 }
 
 @media (max-width: 786px) {
