@@ -58,7 +58,7 @@ function Recipes() {
 
   return (
     <>
-      <h1>You have searched for: {searchQuery}</h1>
+      <h2>You have searched for: {searchQuery}</h2>
       <div className="recipe-grid">
         {recipeData.map((recipe) => (
           <div className="recipe-card" key={recipe.id}>

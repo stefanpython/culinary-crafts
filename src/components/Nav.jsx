@@ -16,6 +16,7 @@ function Nav() {
 
   return (
     <nav className="navbar">
+      <img className="logo" src="./logo2.png" alt="logo" />
       <div className="nav-container">
         <form onSubmit={handleSearch}>
           <input
