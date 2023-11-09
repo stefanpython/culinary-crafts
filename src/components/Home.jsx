@@ -10,7 +10,9 @@ function Home() {
   const fetchRecentRecipes = (pageNum) => {
     isLoading.current = true;
     fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=65fb4eb13c2745dc8613ec2119bbaa69&sort=created&number=9&page=${pageNum}`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=65fb4eb13c2745dc8613ec2119bbaa69&sort=created&number=9&page=${pageNum}&offset=${
+        (pageNum - 1) * 10
+      }`
     )
       .then((response) => {
         if (!response.ok) {
