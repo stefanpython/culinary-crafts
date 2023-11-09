@@ -56,16 +56,23 @@ function Home() {
   return (
     <div className="home-container">
       <h2>Recent Recipes</h2>
-      <div className="recipe-grid">
-        {recipes.map((recipe) => (
-          <div className="recipe-card" key={recipe.id}>
-            <Link to={`/recipe/${recipe.id}`}>
-              <h3>{recipe.title}</h3>
-              <img src={recipe.image} alt={recipe.title} />
-            </Link>
-          </div>
-        ))}
-      </div>
+
+      {!recipes.length ? (
+        <h2>
+          Sorry,free API Quota limit has been reached. Try again tomorrow.
+        </h2>
+      ) : (
+        <div className="recipe-grid">
+          {recipes.map((recipe) => (
+            <div className="recipe-card" key={recipe.id}>
+              <Link to={`/recipe/${recipe.id}`}>
+                <h3>{recipe.title}</h3>
+                <img src={recipe.image} alt={recipe.title} />
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
