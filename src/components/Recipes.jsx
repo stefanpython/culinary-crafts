@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Recipes.css";
@@ -10,10 +10,11 @@ function Recipes() {
   const nagigate = useNavigate();
 
   const [page, setPage] = useState(10); // Track the current page
-  const isLoading = useRef(false);
+  const isLoading = useState(false);
 
   const fetchSearch = (pageNum) => {
     isLoading.current = true;
+
     fetch(
       `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=65fb4eb13c2745dc8613ec2119bbaa69&number=${pageNum}&offset=${
         (pageNum - 1) * 10
@@ -43,6 +44,13 @@ function Recipes() {
       setPage((prevPage) => prevPage + 1);
     }
   };
+
+  // Display newly seached ingredient
+  useEffect(() => {
+    setPage(1);
+    setRecipeData([]);
+    fetchSearch(10);
+  }, [searchQuery]);
 
   useEffect(() => {
     fetchSearch(page);
@@ -80,9 +88,6 @@ function Recipes() {
 
 export default Recipes;
 
-// - display recipes - done
-// - make them clickable with link - done
-// - display related recipes in single page
-// - style everithing up
-// - add back button to navbar
-// - add logo/name
+// fix pagination
+// add pagination in home page
+// add related recipes in single page

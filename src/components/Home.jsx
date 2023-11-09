@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
-import "./Home.css";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import "./Home.css";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
+  const [page, setPage] = useState(1); // Track the current page for fetching recipes
+  const isLoading = useRef(false);
 
-  useEffect(() => {
-    fetchRecentRecipes();
-  }, []);
-
-  const fetchRecentRecipes = () => {
+  const fetchRecentRecipes = (pageNum) => {
+    isLoading.current = true;
     fetch(
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=65fb4eb13c2745dc8613ec2119bbaa69&sort=created&number=9"
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=65fb4eb13c2745dc8613ec2119bbaa69&sort=created&number=9&page=${pageNum}`
     )
       .then((response) => {
         if (!response.ok) {
@@ -20,14 +19,37 @@ function Home() {
         return response.json();
       })
       .then((data) => {
-        setRecipes(data.results);
+        setRecipes((prevRecipes) => [...prevRecipes, ...data.results]);
+        isLoading.current = false;
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        isLoading.current = false;
       });
   };
 
-  // console.log(recipes);
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoading.current) {
+      // Load more recipes when the user is 10 pixels from the bottom
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    fetchRecentRecipes(page);
+  }, [page]);
+
+  useEffect(() => {
+    // Add a scroll event listener to the document
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className="home-container">
