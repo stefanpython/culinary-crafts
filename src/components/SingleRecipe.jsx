@@ -8,6 +8,7 @@ function SingleRecipe() {
   const [similar, setSimilar] = useState([]);
   const { id } = useParams();
   const nagigate = useNavigate();
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
     fetchRecipeInformation();
@@ -16,7 +17,7 @@ function SingleRecipe() {
 
   const fetchRecipeInformation = () => {
     fetch(
-      `https://api.spoonacular.com/recipes/${id}/information?apiKey=65fb4eb13c2745dc8613ec2119bbaa69`
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${apiKey}`
     )
       .then((response) => {
         if (!response.ok) {
@@ -48,9 +49,7 @@ function SingleRecipe() {
 
   // Fetch similar recipe based on id
   const fetchSimilarRecipes = () => {
-    fetch(
-      `https://api.spoonacular.com/recipes/${id}/similar?apiKey=65fb4eb13c2745dc8613ec2119bbaa69`
-    )
+    fetch(`https://api.spoonacular.com/recipes/${id}/similar?apiKey=${apiKey}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to retrieve data from server");

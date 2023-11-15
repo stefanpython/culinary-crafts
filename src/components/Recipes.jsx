@@ -11,12 +11,13 @@ function Recipes() {
 
   const [page, setPage] = useState(10); // Track the current page
   const isLoading = useState(false);
+  const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   const fetchSearch = (pageNum) => {
     isLoading.current = true;
 
     fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=65fb4eb13c2745dc8613ec2119bbaa69&number=${pageNum}&offset=${
+      `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=${apiKey}&number=${pageNum}&offset=${
         (pageNum - 1) * 10
       }`
     )
