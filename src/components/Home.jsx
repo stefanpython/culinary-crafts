@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import { uid } from "uid";
 
 function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -64,7 +65,7 @@ function Home() {
       ) : (
         <div className="recipe-grid">
           {recipes.map((recipe) => (
-            <div className="recipe-card" key={recipe.id}>
+            <div className="recipe-card" key={recipe.id + uid()}>
               <Link to={`/recipe/${recipe.id}`}>
                 <h3>{recipe.title}</h3>
                 <img src={recipe.image} alt={recipe.title} />
