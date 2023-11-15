@@ -1,15 +1,18 @@
 import "./SingleRecipe.css";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SingleRecipe() {
   const [recipe, setRecipe] = useState([]);
+  const [similar, setSimilar] = useState([]);
   const { id } = useParams();
   const nagigate = useNavigate("/");
 
   useEffect(() => {
     fetchRecipeInformation();
-  }, []);
+    fetchSimilarRecipes();
+  }, [id]);
 
   const fetchRecipeInformation = () => {
     fetch(
@@ -43,7 +46,26 @@ function SingleRecipe() {
       });
   };
 
-  console.log(recipe);
+  // Fetch similar recipe based on id
+  const fetchSimilarRecipes = () => {
+    fetch(
+      `https://api.spoonacular.com/recipes/${id}/similar?apiKey=65fb4eb13c2745dc8613ec2119bbaa69`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to retrieve data from server");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setSimilar(data);
+      })
+      .catch((err) => {
+        console.error("Error fetching data: ", err);
+      });
+  };
+
+  console.log(similar);
 
   return (
     <>
@@ -88,6 +110,20 @@ function SingleRecipe() {
         <hr />
 
         <p className="instructions">{recipe.instructions}</p>
+
+        <div className="recipe-grid">
+          {similar.map((recipe) => (
+            <div className="recipe-card" key={recipe.id}>
+              <Link to={`/recipe/${recipe.id}`}>
+                <h3>{recipe.title}</h3>
+                <img
+                  src={`https://spoonacular.com/recipeImages/${recipe.id}-240x150.jpg`}
+                  alt={recipe.title}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

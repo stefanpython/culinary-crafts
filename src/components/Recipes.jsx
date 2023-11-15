@@ -88,6 +88,4 @@ function Recipes() {
 
 export default Recipes;
 
-// fix pagination
-// add pagination in home page
 // add related recipes in single page
