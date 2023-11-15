@@ -64,8 +64,6 @@ function SingleRecipe() {
       });
   };
 
-  console.log(similar);
-
   return (
     <>
       <button className="home-btn" onClick={() => nagigate(-1)}>
