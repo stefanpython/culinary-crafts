@@ -7,7 +7,7 @@ function SingleRecipe() {
   const [recipe, setRecipe] = useState([]);
   const [similar, setSimilar] = useState([]);
   const { id } = useParams();
-  const nagigate = useNavigate("/");
+  const nagigate = useNavigate();
 
   useEffect(() => {
     fetchRecipeInformation();
@@ -69,7 +69,7 @@ function SingleRecipe() {
 
   return (
     <>
-      <button className="home-btn" onClick={() => nagigate("/")}>
+      <button className="home-btn" onClick={() => nagigate(-1)}>
         Back
       </button>
       <div className="single-recipe">
@@ -110,20 +110,23 @@ function SingleRecipe() {
         <hr />
 
         <p className="instructions">{recipe.instructions}</p>
+      </div>
 
-        <div className="recipe-grid">
-          {similar.map((recipe) => (
-            <div className="recipe-card" key={recipe.id}>
-              <Link to={`/recipe/${recipe.id}`}>
-                <h3>{recipe.title}</h3>
-                <img
-                  src={`https://spoonacular.com/recipeImages/${recipe.id}-240x150.jpg`}
-                  alt={recipe.title}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
+      <br />
+
+      <h2>Related recipes</h2>
+      <div className="recipe-grid">
+        {similar.map((recipe) => (
+          <div className="recipe-card" key={recipe.id}>
+            <Link to={`/recipe/${recipe.id}`}>
+              <h3>{recipe.title}</h3>
+              <img
+                src={`https://spoonacular.com/recipeImages/${recipe.id}-240x150.jpg`}
+                alt={recipe.title}
+              />
+            </Link>
+          </div>
+        ))}
       </div>
     </>
   );

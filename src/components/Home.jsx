@@ -59,9 +59,7 @@ function Home() {
       <h2>Recent Recipes</h2>
 
       {!recipes.length ? (
-        <h2>
-          Sorry,free API Quota limit has been reached. Try again tomorrow.
-        </h2>
+        <p>Sorry,free API Quota limit has been reached. Try again tomorrow.</p>
       ) : (
         <div className="recipe-grid">
           {recipes.map((recipe) => (

@@ -7,7 +7,7 @@ function Recipes() {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("query");
   const [recipeData, setRecipeData] = useState([]);
-  const nagigate = useNavigate();
+  const navigate = useNavigate();
 
   const [page, setPage] = useState(10); // Track the current page
   const isLoading = useState(false);
@@ -68,20 +68,24 @@ function Recipes() {
 
   return (
     <>
-      <button className="home-btn" onClick={() => nagigate("/")}>
+      <button className="home-btn" onClick={() => navigate("/")}>
         Back
       </button>
       <h2>You have searched for: {searchQuery}</h2>
-      <div className="recipe-grid">
-        {recipeData.map((recipe) => (
-          <div className="recipe-card" key={recipe.id}>
-            <Link to={`/recipe/${recipe.id}`}>
-              <h3>{recipe.title}</h3>
-              <img src={recipe.image} alt={recipe.title} />
-            </Link>
-          </div>
-        ))}
-      </div>
+      {recipeData.length === 0 ? (
+        <p>Sorry,free API Quota limit has been reached. Try again tomorrow.</p>
+      ) : (
+        <div className="recipe-grid">
+          {recipeData.map((recipe) => (
+            <div className="recipe-card" key={recipe.id}>
+              <Link to={`/recipe/${recipe.id}`}>
+                <h3>{recipe.title}</h3>
+                <img src={recipe.image} alt={recipe.title} />
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 }
