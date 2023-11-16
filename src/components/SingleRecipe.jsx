@@ -106,7 +106,10 @@ function SingleRecipe() {
         <br />
         <hr />
 
-        <p className="instructions">{recipe.instructions}</p>
+        <p
+          className="instructions"
+          dangerouslySetInnerHTML={{ __html: recipe.instructions }}
+        ></p>
       </div>
 
       <br />
