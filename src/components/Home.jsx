@@ -12,7 +12,7 @@ function Home() {
   const fetchRecentRecipes = (pageNum) => {
     isLoading.current = true;
     fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=created&number=9&page=${pageNum}&offset=${
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}&sort=created&number=14&page=${pageNum}&offset=${
         (pageNum - 1) * 10
       }`
     )
