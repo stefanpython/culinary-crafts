@@ -2,6 +2,8 @@
 
 This is a recipe application built using React and Vite. It fetches recipe data from Spoonacular.com and allows users to search for recipes based on specific ingredients. Users can also view the detailed instructions on how to make a selected recipe, including a list of ingredients and their respective amounts. Additionally, the app dynamically loads more recipes as the user scrolls down the page.
 
+Live demo [HERE](https://stefanpython.github.io/culinary-crafts/)
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
