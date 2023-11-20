@@ -70,7 +70,7 @@ function SingleRecipe() {
         Back
       </button>
       <div className="single-recipe">
-        <h1>{recipe.title}</h1>
+        <h1 className="recipe-title">{recipe.title}</h1>
         <img className="recipe-img" src={recipe.image} alt={recipe.title} />
 
         <div>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mandaic&family=Quicksand&family=Source+Code+Pro&display=swap");
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -6,4 +8,22 @@
   color-scheme: light dark;
   color: rgba(43, 41, 41, 0.87);
   background-color: #ffffff;
+}
+
+h3,
+.recipe-title {
+  font-family: "Noto Sans Mandaic", sans-serif;
+  color: rgb(48, 48, 48);
+}
+
+h2 {
+  font-family: "Quicksand", sans-serif;
+}
+
+p {
+  font-family: "Source Code Pro", monospace;
+}
+
+img {
+  border-radius: 10px;
 }
